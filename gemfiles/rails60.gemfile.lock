@@ -186,7 +186,7 @@ PLATFORMS
 DEPENDENCIES
   appraisal
   beta_feature!
-  mysql2 (>= 0.4.4)
+  mysql2 (>= 0.3.20)
   pg (>= 0.18, < 2.0)
   pry
   rails (>= 6.0.0.rc1, < 6.1)
