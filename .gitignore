@@ -9,3 +9,10 @@
 
 # rspec failure tracking
 .rspec_status
+*.gem
+*.swp
+.bundle
+.DS_Store
+.rvmrc
+/coverage
+Gemfile.lock

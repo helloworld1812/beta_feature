@@ -3,7 +3,7 @@ require 'set'
 module BetaFeature
 
   module Flagger
-    extend ActiveSupport::Concern
+    extend ::ActiveSupport::Concern
 
     module ClassMethods
       def flagger

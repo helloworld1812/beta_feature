@@ -37,15 +37,16 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = '>= 2.3.0'
 
-  spec.add_runtime_dependency 'activerecord', '>= 4.2'
+  # spec.add_runtime_dependency 'activerecord', '>= 4.2', '< 6.1'
+  # spec.add_runtime_dependency 'activesupport', '>= 4.2', '< 6.1'
+  spec.add_runtime_dependency 'rails', '>= 4.2', '< 6.1'
 
-  spec.add_development_dependency "bundler", ">= 1.17"
-  spec.add_development_dependency "rake", ">= 12.3.3"
+  spec.add_development_dependency 'appraisal'
   spec.add_development_dependency "rspec", ">= 3.0"
+  spec.add_development_dependency 'rspec-rails', '>= 3.5'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency 'rubocop', '>= 0.54.0'
-  spec.add_development_dependency 'rails', '>= 4.2'
-
-  spec.add_development_dependency 'sqlite3', '~> 1.3'
   spec.add_development_dependency 'mysql2', '>= 0.3.20'
   spec.add_development_dependency 'pg', '>= 0.18', '< 2.0'
 end

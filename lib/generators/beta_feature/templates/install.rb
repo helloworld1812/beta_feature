@@ -1,6 +1,6 @@
 class <%= migration_class_name %> < <%= migration_parent %>
   def self.up
-    create_table :beta_feature_settings, :force => true do |t|
+    create_table :beta_feature_settings, force: true do |t|
       t.integer :betable_id
       t.string :betable_type
       t.string :betas, array: true, default: []
