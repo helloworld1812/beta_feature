@@ -1,12 +1,18 @@
 landing_page_ux_improvement:
-  developer: 'ryan@corp.com'
-  qa: 'windy@corp.com'
-  status: 'in_progress'
+  developer: ryan@corp.com
+  qa: windy@corp.com
+  status: in_progress
   description: 'This is a demo feature flag.'
 
 dark_mode:
+  developer: max@corp.com
+  qa: daniel@corp.com
+  status: in_progress
+  description: 'Build dark mode on our website.'
+
+custom_domain:
   developer: 'max@corp.com'
   qa: 'daniel@corp.com'
-  status: 'in_progress'
-  description: 'Build dark mode on our website.'
+  status: released
+  description: 'Support custom domain for Pro user.'
 
