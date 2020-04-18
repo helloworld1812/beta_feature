@@ -6,11 +6,11 @@ require "beta_feature/version"
 Gem::Specification.new do |spec|
   spec.name          = "beta_feature"
   spec.version       = BetaFeature::VERSION
-  spec.authors       = ["Ryan Lv"]
-  spec.email         = ["xiaorong.ruby@gmail.com"]
+  spec.authors       = ["Ryan Lv", "Windy Liu"]
+  spec.email         = ["tech@workstream.is"]
 
   spec.summary       = %q{Rails feature toggle for trunk based development.}
-  spec.description   = %q{Rails feature toggle for trunk based development.}
+  spec.description   =  spec.summary 
   spec.homepage      = "https://github.com/helloworld1812/beta_feature"
   spec.license       = "MIT"
 
@@ -35,8 +35,17 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = '>= 2.3.0'
 
-  spec.add_development_dependency "bundler", "~> 1.17"
+  spec.add_runtime_dependency 'activerecord', '>= 4.2'
+
+  spec.add_development_dependency "bundler", ">= 1.17"
   spec.add_development_dependency "rake", ">= 12.3.3"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rspec", ">= 3.0"
+  spec.add_development_dependency 'rubocop', '>= 0.54.0'
+  spec.add_development_dependency 'rails', '>= 4.2'
+
+  spec.add_development_dependency 'sqlite3', '~> 1.3'
+  spec.add_development_dependency 'mysql2', '>= 0.3.20'
+  spec.add_development_dependency 'pg', '>= 0.18', '< 2.0'
 end
