@@ -10,3 +10,9 @@ dark_mode:
   status: 'in_progress'
   description: 'Build dark mode on our website.'
 
+custom_domain:
+  developer: 'max@corp.com'
+  qa: 'daniel@corp.com'
+  status: released
+  description: 'Support custom domain for Pro user.'
+  
