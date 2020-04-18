@@ -1,6 +1,6 @@
 # beta_feature
 
-[![Build Status](https://secure.travis-ci.org/collectiveidea/beta_feature.svg)]
+[![Build Status](https://secure.travis-ci.org/helloworld1812/beta_feature.svg)]
 
 **beta_feature** is a database-based feature flag tool for Ruby on Rails, which allows you check in incomplete features without affecting users.
 
@@ -9,6 +9,11 @@
 
 beta_feature is currently ActiveRecord only.
 
+## Supported Database
+
+- PostgreSQL ✅
+- MySQL ❌(Working in Progress)
+- SQLlite ❌(Working in Progress)
 
 ## Installation
 
