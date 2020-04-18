@@ -51,3 +51,6 @@ matrix:
 branches:
   only:
   - master
+
+script:
+  - rake
