@@ -15,7 +15,6 @@ describe BetaFeature::Flagger do
 
     it 'should return true' do
       user.enable_beta!("dark_mode", "landing_page_ux_improvement")
-
       expect(user.can_access_beta?(:dark_mode)).to eq(true)
       expect(user.can_access_beta?("dark_mode")).to eq(true)
       expect(user.can_access_beta?(:landing_page_ux_improvement)).to eq(true)

@@ -1,5 +1,7 @@
 # beta_feature
 
+[![Build Status](https://secure.travis-ci.org/collectiveidea/beta_feature.svg)]
+
 **beta_feature** is a database-based feature flag tool for Ruby on Rails, which allows you check in incomplete features without affecting users.
 
 

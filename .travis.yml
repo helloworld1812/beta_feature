@@ -7,7 +7,7 @@ rvm:
   - 2.6.3
 env:
   - DB=POSTGRES
-  - DB=MYSQL
+  # - DB=MYSQL
 addons:
   postgresql: "9.4"
 services:
