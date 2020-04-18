@@ -13,7 +13,7 @@ beta_feature is currently ActiveRecord only.
 
 - PostgreSQL ✅
 - MySQL ❌(Working in Progress)
-- SQLlite ❌(Working in Progress)
+- SQLite ❌(Working in Progress)
 
 
 ## Installation
