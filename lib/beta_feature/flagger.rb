@@ -22,6 +22,7 @@ module BetaFeature
         keys.all {|key| all_betas.include?(key) }
       end
 
+      # add feature flags.
       def enable_beta!(keys)
         validate_beta_feature_name(*keys)
 
@@ -31,7 +32,8 @@ module BetaFeature
         flush_beta_cache
       end
 
-      def disable_beta!(keys)
+      #remove feature flags
+      def remove_beta!(keys)
         validate_beta_feature_name(*keys)
 
         betas = (beta_feature_setting.betas - keys).uniq
