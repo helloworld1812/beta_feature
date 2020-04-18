@@ -16,28 +16,28 @@ module BetaFeature
     end
 
     module BetaFeatureInstanceMethods
-      def can_access_beta?(*keys)
-        keys = keys.map(&:to_s)
-        validate_beta_name(*keys)
-        keys.all? {|key| all_betas.include?(key) }
+      def can_access_beta?(*betas)
+        betas = betas.map(&:to_s)
+        validate_beta_name(*betas)
+        betas.all? {|key| all_betas.include?(key) }
       end
 
       # add feature flags.
-      def enable_beta!(*keys)
-        keys = keys.map(&:to_s)
-        validate_beta_name(*keys)
-        betas = (find_or_create_beta_feature_setting.betas + keys).uniq
+      def enable_beta!(*betas)
+        betas = betas.map(&:to_s)
+        validate_beta_name(*betas)
+        betas = (find_or_create_beta_feature_setting.betas + betas).uniq
         beta_feature_setting.update(betas: betas)
 
         flush_beta_cache
       end
 
       #remove feature flags
-      def remove_beta!(*keys)
-        keys = keys.map(&:to_s)
-        validate_beta_name(*keys)
+      def remove_beta!(*betas)
+        betas = betas.map(&:to_s)
+        validate_beta_name(*betas)
 
-        betas = (find_or_create_beta_feature_setting.betas - keys).uniq
+        betas = (find_or_create_beta_feature_setting.betas - betas).uniq
         beta_feature_setting.update(betas: betas)
 
         flush_beta_cache
@@ -49,8 +49,13 @@ module BetaFeature
 
       private
 
-      def validate_beta_name(*keys)
-        # TODO
+      def validate_beta_name(*betas)
+        betas.each do |beta|
+          if !BetaFeature.all_betas.key?(beta)
+            msg = "Please define #{beta} in config/beta_features.yml"
+            raise BetaFeature::BetaNotDefined.new(msg)
+          end
+        end
       end
 
       def find_or_create_beta_feature_setting

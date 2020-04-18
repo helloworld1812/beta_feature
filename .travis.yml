@@ -14,8 +14,8 @@ services:
   - mysql
   - postgresql
 before_install:
-  - mysql -e 'CREATE DATABASE beta_feature_test;'
-  - psql -c 'create database beta_feature_test;' -U postgres
+  # - mysql -e 'CREATE DATABASE beta_feature_test;'
+  # - psql -c 'create database beta_feature_test;' -U postgres
   # https://github.com/travis-ci/travis-ci/issues/8978
   - "travis_retry gem update --system"
   # Rails 4.2 has a bundler 1.x requirement

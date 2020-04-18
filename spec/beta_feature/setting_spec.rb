@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-SingleCov.covered!
+# SingleCov.covered!
 
 describe BetaFeature::Setting do
 
