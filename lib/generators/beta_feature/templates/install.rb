@@ -1,12 +1,12 @@
 class <%= migration_class_name %> < <%= migration_parent %>
   def self.up
     create_table :beta_feature_settings, :force => true do |t|
-      t.integer :ownerable_id
-      t.string :ownerable_type
+      t.integer :betable_id
+      t.string :betable_type
       t.string :betas, array: true, default: []
       t.timestamps
 
-      t.index [:ownerable_type, :ownerable_id], unique: true
+      t.index [:betable_type, :betable_id], unique: true
     end
   end
 

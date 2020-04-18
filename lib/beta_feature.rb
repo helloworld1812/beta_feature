@@ -1,6 +1,6 @@
 require "beta_feature/version"
+require "beta_feature/flagger"
+require "beta_feature/setting"
+require "beta_feature/error"
 
-module BetaFeature
-  class Error < StandardError; end
-  # Your code goes here...
-end
+::ActiveRecord::Base.send :include, BetaFeature::Flagger

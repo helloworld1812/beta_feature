@@ -7,57 +7,58 @@ module BetaFeature
 
     module ClassMethods
       def flagger
-        return if include_modules.include?(::BetaFeature::Flagger::BetaFeatureInstanceMethods)
+        return if included_modules.include?(::BetaFeature::Flagger::BetaFeatureInstanceMethods)
 
         include ::BetaFeature::Flagger::BetaFeatureInstanceMethods
 
-        has_one :beta_feature_setting, class: "BetaFeature::Setting"
+        has_one :beta_feature_setting, class_name: "BetaFeature::Setting", as: :betable
       end
     end
 
-    module InstanceMethods
+    module BetaFeatureInstanceMethods
       def can_access_beta?(*keys)
         keys = keys.map(&:to_s)
-        validate_beta_feature_name(*keys)
-        keys.all {|key| all_betas.include?(key) }
+        validate_beta_name(*keys)
+        keys.all? {|key| all_betas.include?(key) }
       end
 
       # add feature flags.
-      def enable_beta!(keys)
-        validate_beta_feature_name(*keys)
-
-        betas = (beta_feature_setting.betas + keys).uniq
+      def enable_beta!(*keys)
+        keys = keys.map(&:to_s)
+        validate_beta_name(*keys)
+        betas = (find_or_create_beta_feature_setting.betas + keys).uniq
         beta_feature_setting.update(betas: betas)
 
         flush_beta_cache
       end
 
       #remove feature flags
-      def remove_beta!(keys)
-        validate_beta_feature_name(*keys)
+      def remove_beta!(*keys)
+        keys = keys.map(&:to_s)
+        validate_beta_name(*keys)
 
-        betas = (beta_feature_setting.betas - keys).uniq
+        betas = (find_or_create_beta_feature_setting.betas - keys).uniq
         beta_feature_setting.update(betas: betas)
 
         flush_beta_cache
       end
 
       def all_betas
-        @__all_betas__ ||= begin 
-          setting = beta_feature_setting || create_beta_feature_setting
-          setting.betas.to_set
-        end
+        @__all_betas__ ||= find_or_create_beta_feature_setting.betas.to_set
       end
-
 
       private
 
-      def validate_beta_feature_name(*keys)
+      def validate_beta_name(*keys)
         # TODO
       end
 
+      def find_or_create_beta_feature_setting
+        beta_feature_setting || create_beta_feature_setting
+      end
+
       def flush_beta_cache
-        remove_instance_variable(:@__all_betas__)
+        remove_instance_variable(:@__all_betas__) if defined? @__all_betas__
       end
     end
   end
