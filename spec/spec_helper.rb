@@ -27,9 +27,9 @@ ActiveRecord::Base.establish_connection
 # Create tables
 ActiveRecord::Schema.define do
   create_table :beta_feature_settings, force: true do |t|
-    t.integer :betable_id
-    t.string :betable_type
-    t.string :betas, array: true, default: []
+    t.integer :betable_id, null: false
+    t.string :betable_type, null: false
+    t.string :betas, array: true, default: [], null: false
     t.timestamps
   end
   add_index :beta_feature_settings, [:betable_type, :betable_id], unique: true
