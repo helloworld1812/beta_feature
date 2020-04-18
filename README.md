@@ -44,7 +44,7 @@ dark_mode:
 
 ## Usage
 
-### Feature toggle for specific users.
+### Example: User Level feature toggle
 
 Simply call `flagger` on your `User` model:
 
@@ -73,7 +73,19 @@ user.can_access_beta?(:dark_mode) # => true/false
 ```
 
 
-## Feature toggle for specific company.
+Controll the logic based on feature flag.
+
+```ruby
+
+if current_user.can_access_beta?(:dark_mode)
+  render 'home', layout: 'dark'
+else
+  render 'home'
+end
+```
+
+
+## Example: Company Level feature toggle
 
 For enterprise application, you might want to enable a beta feature for all the employees of specific company. You can do it in this way.
 
@@ -101,11 +113,19 @@ user.remove_beta!(:landing_page_ux_improvement)
 user.can_access_beta?(:dark_mode) # => true/false
 ```
 
+Controll the logic based on feature flag.
+
+```ruby
+if company.can_access_beta?(:landing_page_ux_improvement)
+  render 'landing_page_v2'
+else
+  render 'landing_page'
+end
+```
 
 ## Granularity
 
-User level and company level beta toggles could meet most applications. But if you have special requirements, you can enable feature toggle to any models by `flagger`.
-
+User level and company level beta toggles could meet most applications. But if you have special requirements, you can enable feature toggle to any models by calling `flagger`.
 
 
 ```ruby
