@@ -1,9 +1,9 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.3.7
-  - 2.4.4
-  - 2.5.1
+  # - 2.3.7
+  # - 2.4.4
+  - 2.5.3
   - 2.6.3
 env:
   - DB=POSTGRES
@@ -15,6 +15,7 @@ services:
   - postgresql
 before_install:
   - mysql -e 'CREATE DATABASE beta_feature_test;'
+  - psql -c 'create database beta_feature_test;' -U postgres
   # https://github.com/travis-ci/travis-ci/issues/8978
   - "travis_retry gem update --system"
   # Rails 4.2 has a bundler 1.x requirement
@@ -24,9 +25,6 @@ before_install:
     else
       travis_retry gem install bundler;
     fi
-
-before_script:
-  - psql -c 'create database beta_feature_test;' -U postgres
 
 gemfile:
   - gemfiles/rails50.gemfile
@@ -39,10 +37,10 @@ matrix:
       script: bundle exec rubocop --parallel
       env: DB=rubocop # make travis build display nicer
   exclude:
-    - rvm: 2.3.7
-      gemfile: gemfiles/rails60.gemfile
-    - rvm: 2.4.4
-      gemfile: gemfiles/rails60.gemfile
+    # - rvm: 2.3.7
+    #   gemfile: gemfiles/rails60.gemfile
+    # - rvm: 2.4.4
+    #   gemfile: gemfiles/rails60.gemfile
     - rvm: 2.6.3
       gemfile: gemfiles/rails42.gemfile
     - rvm: ruby-head
