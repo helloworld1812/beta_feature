@@ -145,13 +145,13 @@ end
 group = Group.find(397)
 
 #enable the feature flag dark_mode for this group.
-user.enable_beta!(:dark_mode)
+group.enable_beta!(:dark_mode)
 
 #remove the feature flag landing_page_ux_improvement from this group's feature flags.
-user.remove_beta!(:landing_page_ux_improvement)
+group.remove_beta!(:landing_page_ux_improvement)
 
 # check whether a feature is active for this group.
-user.can_access_beta?(:dark_mode) # => true/false
+group.can_access_beta?(:dark_mode) # => true/false
 ```
 
 
