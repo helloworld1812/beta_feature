@@ -93,7 +93,7 @@ end
 ```
 
 
-## Example: Company Level feature toggle
+### Example: Company Level feature toggle
 
 For enterprise application, you might want to enable a beta feature for all the employees of specific company. You can do it in this way.
 
@@ -131,7 +131,7 @@ else
 end
 ```
 
-## Granularity
+### Granularity
 
 User level and company level beta toggles could meet most applications. But if you have special requirements, you can enable feature toggle to any models by calling `flagger`.
 
@@ -152,6 +152,23 @@ group.remove_beta!(:landing_page_ux_improvement)
 
 # check whether a feature is active for this group.
 group.can_access_beta?(:dark_mode) # => true/false
+```
+
+### General Availability (GA)
+
+If your feature has been well tested, changing the status from `in_progress` to `released` will make this feature general available to all customer. The feature check will always return true.
+
+
+```yml
+dark_mode:
+  developer: ryan@corp.com
+  qa: windy@corp.com
+  status: released
+  description: Building dark mode for my website.
+```
+
+```ruby
+user.can_access_beta?(:dark_mode) # => always return true
 ```
 
 

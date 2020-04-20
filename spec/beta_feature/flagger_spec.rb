@@ -8,12 +8,12 @@ describe BetaFeature::Flagger do
   let(:group)   { Group.create(name: "i-Running") }
 
   describe '#can_access_beta?' do
-    it 'should return false' do
+    it 'should return false if feature is not enabled' do
       expect(user.can_access_beta?(:dark_mode)).to eq(false)
       expect(user.can_access_beta?(:dark_mode, :landing_page_ux_improvement)).to eq(false)
     end
 
-    it 'should return true' do
+    it 'should return true after enabling feature' do
       user.enable_beta!("dark_mode", "landing_page_ux_improvement")
       expect(user.can_access_beta?(:dark_mode)).to eq(true)
       expect(user.can_access_beta?("dark_mode")).to eq(true)
@@ -22,10 +22,13 @@ describe BetaFeature::Flagger do
       expect(user.can_access_beta?(:dark_mode, :landing_page_ux_improvement)).to eq(true)
     end
 
-    it 'should raise error' do
+    it 'should raise error when feature is not defined in config/beta_features.yml file' do
       expect { user.can_access_beta?(:beta_doesnt_exist) }.to raise_error(BetaFeature::BetaNotDefined)
     end
 
+    it 'should always return true if the status of a beta is `released`' do
+      expect(user.can_access_beta?(:custom_domain)).to eq(true)
+    end
   end
 
   describe '#enable_beta!' do
@@ -83,6 +86,14 @@ describe BetaFeature::Flagger do
   end
 
   describe '#all_betas' do
+    it 'should contain the released betas' do
+      expect(BetaFeature.released.keys.to_set.subset?(user.all_betas)).to eq(true)
+    end
+
+    it 'should return a set' do
+      expect(user.all_betas).to be_kind_of(Set)
+    end
+
     it 'should retrieve instance variable cache' do
       # cache results in instance variable cache.
       user.can_access_beta?(:dark_mode)

@@ -44,7 +44,9 @@ module BetaFeature
       end
 
       def all_betas
-        @__all_betas__ ||= find_or_create_beta_feature_setting.betas.to_set
+        @__all_betas__ ||= begin
+          find_or_create_beta_feature_setting.betas.to_set + BetaFeature.released.keys.to_set
+        end
       end
 
       private
