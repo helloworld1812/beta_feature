@@ -112,13 +112,13 @@ The instance of Company will have the ability to toggle feature in company level
 company = Company.find(2)
 
 #enable the feature flag dark_mode for this company.
-user.enable_beta!(:dark_mode)
+company.enable_beta!(:dark_mode)
 
 #remove the feature flag landing_page_ux_improvement from this company's feature flags.
-user.remove_beta!(:landing_page_ux_improvement)
+company.remove_beta!(:landing_page_ux_improvement)
 
 # check whether a feature is active for this company.
-user.can_access_beta?(:dark_mode) # => true/false
+company.can_access_beta?(:dark_mode) # => true/false
 ```
 
 Controll the logic based on feature flag.
