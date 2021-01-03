@@ -54,4 +54,4 @@ branches:
   - master
 
 script:
-  - rake
+  - bundle exec rspec
