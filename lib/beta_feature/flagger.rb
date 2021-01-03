@@ -26,9 +26,8 @@ module BetaFeature
       def enable_beta!(*betas)
         betas = betas.map(&:to_s)
         validate_beta_name(*betas)
-        betas = (find_or_create_beta_feature_setting.betas + betas).uniq
+        betas = clean_betas(find_or_create_beta_feature_setting.betas + betas)
         beta_feature_setting.update(betas: betas)
-
         flush_beta_cache
       end
 
@@ -36,8 +35,7 @@ module BetaFeature
       def remove_beta!(*betas)
         betas = betas.map(&:to_s)
         validate_beta_name(*betas)
-
-        betas = (find_or_create_beta_feature_setting.betas - betas).uniq
+        betas = clean_betas(find_or_create_beta_feature_setting.betas - betas)
         beta_feature_setting.update(betas: betas)
 
         flush_beta_cache
@@ -45,7 +43,7 @@ module BetaFeature
 
       def all_betas
         @__all_betas__ ||= begin
-          find_or_create_beta_feature_setting.betas.to_set + BetaFeature.released.keys.to_set
+          clean_betas(find_or_create_beta_feature_setting.betas + BetaFeature.released.keys).to_set
         end
       end
 
@@ -66,6 +64,10 @@ module BetaFeature
 
       def flush_beta_cache
         remove_instance_variable(:@__all_betas__) if defined? @__all_betas__
+      end
+
+      def clean_betas(betas)
+        betas.map(&:to_s).uniq.compact.select{ |beta| BetaFeature.all_betas.key?(beta) }
       end
     end
   end
