@@ -36,7 +36,7 @@ Or install it yourself as:
 Then, To make the engine's functionality accessible from within an application, it needs to be mounted in that application's config/routes.rb file:
 
 ```ruby
-mount Blorgh::Engine, at: "/beta_feature"
+mount BetaFeature::Engine, at: "/beta_feature"
 ```
 
 
@@ -178,7 +178,55 @@ dark_mode:
 user.can_access_beta?(:dark_mode) # => always return true
 ```
 
+## API
 
+this engine provides three API for the frontend to list all available betas or toggle beta features for a paticular class.
+
+### List all available beta features in the beta_features.yml
+
+GET /beta_feature/all
+
+Response
+
+```json
+{
+  "landing_page_ux_improvement": {
+    "developer": "ryan@corp.com",
+    "qa": "windy@corp.com",
+    "status": "in_progress",
+    "description": "This is a demo feature flag."
+  },
+  "dark_mode": {
+    "developer": "max@corp.com",
+    "qa": "daniel@corp.com",
+    "status": "in_progress",
+    "description": "Build dark mode on our website."
+  },
+  "custom_domain": {
+    "developer": "max@corp.com",
+    "qa": "daniel@corp.com",
+    "status": "released",
+    "description": "Support custom domain for Pro user."
+  }
+}
+```
+
+### List all enabled beta features for a particular object.
+
+GET /beta_feature/:object_class/:object_id/setting
+
+### toggle beta feature
+
+PUT /beta_feature/:object_class/:object_id/setting
+
+Parameter
+```json
+{
+ "betas": {
+    "landing_page_ux_improvement": true,
+    "dark_mode": false
+}
+```
 
 ## Alternative
 
