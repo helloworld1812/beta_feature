@@ -72,3 +72,5 @@ module BetaFeature
     end
   end
 end
+
+::ActiveRecord::Base.send :include, BetaFeature::Flagger
