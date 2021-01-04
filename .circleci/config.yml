@@ -18,7 +18,7 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: beta_feature_test
-          POSTGRES_PASSWORD: "" 
+          POSTGRES_PASSWORD: test 
     steps:
       - checkout
       - run:
