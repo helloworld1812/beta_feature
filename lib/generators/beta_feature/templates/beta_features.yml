@@ -15,4 +15,3 @@ custom_domain:
   qa: 'daniel@corp.com'
   status: released
   description: 'Support custom domain for Pro user.'
-  

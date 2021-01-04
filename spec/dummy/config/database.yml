@@ -1,0 +1,14 @@
+default: &default
+  adapter: postgresql
+  username: postgres
+  password:
+  database: beta_feature_test
+  min_messages: ERROR
+
+test:
+  <<: *default
+  database: beta_feature_test
+
+development:
+  <<: *default
+  database: beta_feature_development
