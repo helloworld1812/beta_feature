@@ -215,7 +215,7 @@ Response
 
 GET /beta_feature/:object_class/:object_id/setting
 
-### toggle beta feature
+### Toggle on/off betas for a particular object.
 
 PUT /beta_feature/:object_class/:object_id/setting
 
