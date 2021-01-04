@@ -2,10 +2,9 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@0.1.2
-  
+
 jobs:
   build:
-    executor: default
     docker:
       - image: circleci/ruby:2.6.6
         environment:
@@ -22,7 +21,6 @@ jobs:
           POSTGRES_PASSWORD: ""    
     steps:
       - checkout
-      # Which version of bundler?
       - run:
           name: Which bundler?
           command: bundle -v
