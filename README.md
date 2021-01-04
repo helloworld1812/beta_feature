@@ -1,6 +1,6 @@
 # beta_feature
 
-[![Build Status](https://secure.travis-ci.org/helloworld1812/beta_feature.svg)](http://travis-ci.org/helloworld1812/beta_feature)
+[![CircleCI Build Status](https://circleci.com/gh/helloworld1812/beta_feature.svg?style=svg)](https://circleci.com/gh/helloworld1812/beta_feature)
 
 **beta_feature** is a database-based feature flag tool for Ruby on Rails, which allows you check in incomplete features without affecting users.
 
