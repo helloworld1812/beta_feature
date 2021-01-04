@@ -11,7 +11,7 @@ describe 'Setting', type: :request do
       get "/beta_feature/#{company.class}/#{company.id}/setting"
       results = JSON.parse(response.body)
       expect(response.code).to eq('200')
-      betas.each {|beta| expect(results['betas'].include?(beta))}
+      betas.each {|beta| expect(results['betas'][beta] == true)}
     end
 
     it 'should return 404 when company does not exist' do

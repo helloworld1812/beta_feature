@@ -11,10 +11,15 @@ module BetaFeature
 
     # GET /beta_feature/:object_class/:object_id/setting
     def show
+      betas = {}
+      BetaFeature.all_betas.keys.map do |key|
+        betas[key] = @object.all_betas.include?(key) ? true : false
+      end
+
       render json: {
         object_class: @object_class,
         object_id: @object_id,
-        betas: @object.all_betas
+        betas: betas
       }
     end
 
@@ -36,11 +41,11 @@ module BetaFeature
       @object.enable_beta!(*enabled_betas) if enabled_betas.present?
       @object.remove_beta!(*disabled_betas) if disabled_betas.present?
 
-     render json: {
-      object_class: @object_class,
-      object_id: @object_id,
-      betas: @object.all_betas
-     } 
+      render json: {
+        object_class: @object_class,
+        object_id: @object_id,
+        betas: @object.all_betas
+      } 
     end
 
     private

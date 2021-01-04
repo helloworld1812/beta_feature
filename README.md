@@ -215,6 +215,16 @@ Response
 
 GET /beta_feature/:object_class/:object_id/setting
 
+Response
+
+```json
+{
+ "betas": {
+    "landing_page_ux_improvement": true,
+    "dark_mode": false
+}
+```
+
 ### toggle beta feature
 
 PUT /beta_feature/:object_class/:object_id/setting
