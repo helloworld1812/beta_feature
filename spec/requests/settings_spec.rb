@@ -38,8 +38,8 @@ describe 'Setting', type: :request do
 
       results = JSON.parse(response.body)
       expect(response.code).to eq("200")
-      expect(results['betas'].include?('landing_page_ux_improvement')).to be false
-      expect(results['betas'].include?('dark_mode')).to be false
+      expect(results['betas']['landing_page_ux_improvement']).to be false
+      expect(results['betas']['dark_mode']).to be false
     end
 
     it 'should successfully toggle on the betas' do
@@ -53,8 +53,8 @@ describe 'Setting', type: :request do
 
       results = JSON.parse(response.body)
       expect(response.code).to eq("200")
-      expect(results['betas'].include?('landing_page_ux_improvement')).to be true
-      expect(results['betas'].include?('dark_mode')).to be true
+      expect(results['betas']['landing_page_ux_improvement']).to be true
+      expect(results['betas']['dark_mode']).to be true
     end
 
     it 'should support true/false of string format' do
@@ -68,8 +68,8 @@ describe 'Setting', type: :request do
 
       results = JSON.parse(response.body)
       expect(response.code).to eq("200")
-      expect(results['betas'].include?('landing_page_ux_improvement')).to be true
-      expect(results['betas'].include?('dark_mode')).to be false
+      expect(results['betas']['landing_page_ux_improvement']).to be true
+      expect(results['betas']['dark_mode']).to be false
     end
   end
 end
